@@ -1,13 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 import SubmitIssue from './SubmitIssue';
-import Delete from './Delete'
+import Delete from './Delete';
+
+
+
 
 class Tickets extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tickets: [],
+            tickets: {
+                content: []
+            },
         }
         this.getTasks = this.getTasks.bind(this);
     }
@@ -21,13 +26,13 @@ class Tickets extends React.Component {
     getTasks() {
         axios.get("http://localhost:8080/ticket")
             .then(res => {
-                const tickets = res.data.content;
+                const tickets = res.data;
                 this.setState({ tickets: tickets });
             })
     }
 
     display() {
-        return this.state.tickets.map((ticket, index) => {
+        return this.state.tickets.content.map((ticket, index) => {
             const { id, name, issue, description } = ticket;
             return (
                 <tr key={id}>
@@ -35,7 +40,7 @@ class Tickets extends React.Component {
                     <td>{name}</td>
                     <td>{issue}</td>
                     <td>{description}</td>
-                    <Delete ticketId={id} updateState={this.getTasks}/>
+                    <Delete ticketId={id} updateState={this.getTasks} />         
                 </tr>
             )
         })
@@ -46,8 +51,8 @@ class Tickets extends React.Component {
     render() {
         return (
             <div className="Tickets">
-                <ul>{this.display()}</ul>
-                <SubmitIssue updateTable={()=>this.getTasks()} />
+                <table>{this.display()}</table>
+                <SubmitIssue updateTable={() => this.getTasks()} />
             </div>
         );
     }
