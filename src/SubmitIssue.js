@@ -31,13 +31,18 @@ class SubmitIssue extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post("http://localhost:8080/ticket", this.state);
-    this.setState({
-      name: '',
-      issue: '',
-      description: '',
-    })
-    this.props.updateTable();
+    axios.post("http://localhost:8080/ticket", this.state).then(
+      (response) => {
+        this.setState({
+          name: '',
+          issue: '',
+          description: '',
+        })
+        this.props.updateTable()
+      }
+    );
+
+
   }
 
   render() {

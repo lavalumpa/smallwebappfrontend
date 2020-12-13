@@ -7,6 +7,7 @@ import Tickets from './Tickets';
 const imageURL = 'https://previews.123rf.com/images/larryrains/larryrains1605/larryrains160500844/57291799-complaint-box.jpg';
 
 class App extends React.Component {
+
   render() {
     return (
       <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import SubmitIssue from './SubmitIssue'
-
+import SubmitIssue from './SubmitIssue';
+import Delete from './Delete'
 
 class Tickets extends React.Component {
     constructor(props) {
@@ -9,14 +9,14 @@ class Tickets extends React.Component {
         this.state = {
             tickets: [],
         }
-        this.getTasks=this.getTasks.bind(this);
+        this.getTasks = this.getTasks.bind(this);
     }
 
 
     componentDidMount() {
         this.getTasks();
     }
-    
+
 
     getTasks() {
         axios.get("http://localhost:8080/ticket")
@@ -35,16 +35,19 @@ class Tickets extends React.Component {
                     <td>{name}</td>
                     <td>{issue}</td>
                     <td>{description}</td>
+                    <Delete ticketId={id} updateState={this.getTasks}/>
                 </tr>
             )
         })
     }
 
+
+
     render() {
         return (
             <div className="Tickets">
                 <ul>{this.display()}</ul>
-                <SubmitIssue updateTable={this.getTasks}/>
+                <SubmitIssue updateTable={()=>this.getTasks()} />
             </div>
         );
     }
