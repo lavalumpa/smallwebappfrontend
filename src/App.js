@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import React from 'react';
+import Tickets from './Tickets';
+
+
+const imageURL = 'https://previews.123rf.com/images/larryrains/larryrains1605/larryrains160500844/57291799-complaint-box.jpg';
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <img
+          src={imageURL}
+          alt='Ticket'
+          height={200}
+          width={200}
+          >
+        </img>
+        <Tickets />
+      </div>
+    )
+  }
 }
 
+
 export default App;
+
