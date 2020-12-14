@@ -12,33 +12,19 @@ class Tickets extends React.Component {
         super(props);
         this.state = {
             ticketsPageInfo: null,
-            currentPage:0,
+            currentPage: 0,
             isTicketLoaded: false
         }
-        this.getTasks = this.getTasks.bind(this);
+        this.getTasks = this.getTickets.bind(this);
     }
 
 
     componentDidMount() {
-        this.getTasks(0);
-    }
-
-
-    getTasks(page) {
-        axios.get(`http://localhost:8080/ticket?page=${page}`)
-            .then(res => {
-                const tickets = res.data;
-                this.setState({ 
-                    ticketsPageInfo: tickets,
-                    currentPage: page,
-                    isTicketLoaded: true
-                 });
-                
-            })
+        this.getTickets(0);
     }
 
     tableContent() {
-        const tickets=this.state.ticketsPageInfo.content;
+        const tickets = this.state.ticketsPageInfo.content;
         return tickets.map((ticket, index) => {
             const { id, name, issue, description } = ticket;
             return (
@@ -47,43 +33,58 @@ class Tickets extends React.Component {
                     <td>{name}</td>
                     <td>{issue}</td>
                     <td>{description}</td>
-                    <Delete ticketId={id} updateState={()=>this.updateAfterDeletion(this.state.currentPage)} />
+                    <td><Delete ticketId={id} updateState={() => this.updateAfterDeletion(this.state.currentPage)} /></td>
                 </tr>
             )
         })
     }
 
-    
 
-    updateAfterDeletion(currentPage){
-        if (this.isLastPageWithOneElement(currentPage)){
-            this.getTasks(currentPage-1);
+
+    updateAfterDeletion(currentPage) {
+        if (this.isLastPageWithOneElement(currentPage)) {
+            this.getTickets(currentPage - 1);
         } else {
-            this.getTasks(currentPage);
+            this.getTickets(currentPage);
         }
     }
 
-    isLastPageWithOneElement(currentPage){
-       return this.state.ticketsPageInfo.totalElements %10===1 && (currentPage+1)===this.state.ticketsPageInfo.totalPages;
+    isLastPageWithOneElement(currentPage) {
+        return this.state.ticketsPageInfo.totalElements % 10 === 1 && (currentPage + 1) === this.state.ticketsPageInfo.totalPages;
     }
 
+    getTickets(page) {
+        axios.get(`http://localhost:8080/ticket?page=${page}`)
+            .then(res => {
+                const tickets = res.data;
+                this.setState({
+                    ticketsPageInfo: tickets,
+                    currentPage: page,
+                    isTicketLoaded: true
+                });
+            })
+    }
 
     render() {
-        if (this.state.isTicketLoaded===false){
+        if (this.state.isTicketLoaded === false) {
             return <div>
                 loading
             </div>
         }
         return (
             <div className="Tickets">
-                <table>{this.tableContent()}</table>
+                <table>
+                    <tbody>
+                        {this.tableContent()}
+                    </tbody>
+                </table>
                 <ReactPaginate
                     pageCount={this.state.ticketsPageInfo.totalPages}
                     forcePage={this.state.currentPage}
                     pageRangeDisplayed={3}
-                    onPageChange={(page)=>this.getTasks(page.selected)}
+                    onPageChange={(page) => this.getTickets(page.selected)}
                 />
-                <SubmitIssue updateTable={() => this.getTasks(this.state.currentPage)} />
+                <SubmitIssue updateTable={() => this.getTickets(this.state.currentPage)} />
 
             </div>
         );

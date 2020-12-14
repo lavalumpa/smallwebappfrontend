@@ -16,9 +16,12 @@ class App extends React.Component {
           alt='Ticket'
           height={200}
           width={200}
-          >
+        >
         </img>
         <Tickets />
+        <a href={"https://github.com/vayser/react-js-pagination/issues/17"} target = '_blank' rel='noopener noreferrer'>
+            test
+        </a>
       </div>
     )
   }
