@@ -11,11 +11,9 @@ class Delete extends React.Component {
 
     render() {
         return (
-            
-                <button className='Delete' onClick={() => this.delete(this.props.ticketId)}>
-                    Delete
-                </button>
-            
+            <button className='Delete' onClick={() => this.delete(this.props.ticketId)}>
+                Delete
+            </button>
         )
     }
 }

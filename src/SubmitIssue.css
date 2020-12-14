@@ -1,0 +1,22 @@
+form{
+    left: 50%;
+    margin-left: -5%;
+    position: absolute;
+}
+input {    
+    display: block;
+}
+
+label{
+    vertical-align: middle;
+}
+.desc-lab{
+    margin-top: 5px;
+}
+
+textarea{
+    vertical-align: top;
+    height:50px ;
+    width: 69%;
+    resize: none;
+}

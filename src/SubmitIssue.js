@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import './SubmitIssue.css';
 
 class SubmitIssue extends React.Component {
   constructor(props) {
@@ -49,17 +50,17 @@ class SubmitIssue extends React.Component {
     return (
       <div className='IssueForm'>
         <form onSubmit={this.handleSubmit}>
-          <label>
+          <label >
             Name:
           <input type="text" value={this.state.name} onChange={this.handleNameChange} />
           </label>
-          <label>
+          <label >
             Issue:
           <input type="text" value={this.state.issue} onChange={this.handleIssueChange} />
           </label>
-          <label>
-            Description:
-          <input type="textArea" value={this.state.description} onChange={this.handleDescriptionChange} />
+          <label  className={'desc-lab'}>
+          Description:
+          <textarea className={'description-field'} type="textarea" value={this.state.description} onChange={this.handleDescriptionChange} />
           </label>
           <input type="submit" value="Submit" />
         </form>

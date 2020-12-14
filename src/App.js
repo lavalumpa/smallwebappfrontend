@@ -12,6 +12,7 @@ class App extends React.Component {
     return (
       <div>
         <img
+          
           src={imageURL}
           alt='Ticket'
           height={200}
