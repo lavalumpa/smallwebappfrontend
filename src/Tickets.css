@@ -1,0 +1,100 @@
+.item {
+    align-items: center;
+    color: #FFF;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+  }
+  
+  .disabled-page {
+    color: #808e9b;
+  }
+  
+  .active {
+    border: solid 1px #808e9b;
+    border-radius: 40px;
+    color: #808e9b;
+  }
+  
+  
+  .next {
+    border-left: solid 1px #808e9b;
+    font-size: 25px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    width: 150px;
+  }
+  
+  .pagination {
+    align-items: center;
+    background-color: darkred;
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    justify-content: center;
+    list-style-type: none;
+    position: relative;
+    width: 1000px;
+    margin:auto
+  }
+  
+  .pagination-page {
+    font-weight: 700;
+  }
+  
+  .previous {
+    border-right: solid 1px #808e9b;
+    font-size: 25px;
+    height: 60px;
+    left: 0;
+    position: absolute;
+    width: 150px;
+  }
+
+  .ticket-table{
+      margin:auto;
+      width: 1120px;    
+  }
+  .table-header ,.ticket-table , .table-row, .td-id, .td-name,.td-issue,.td-description, .td-delete{
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  .table-header{
+    color: black;
+  }
+
+  .td-id,.th-id {
+    width:5%;
+  }
+
+  .td-name, .th-name{
+      width: 10%;
+  }
+
+  .td-issue, .th-issue{
+      width:15%;
+  }
+
+  .td-description, .th-description{
+      width:65%;
+  }
+
+  .td-delete, .th-delete{
+      width:5%;
+  }
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
+
+ 
+
+  
+
+
+
+

@@ -19,9 +19,6 @@ class App extends React.Component {
         >
         </img>
         <Tickets />
-        <a href={"https://github.com/vayser/react-js-pagination/issues/17"} target = '_blank' rel='noopener noreferrer'>
-            test
-        </a>
       </div>
     )
   }

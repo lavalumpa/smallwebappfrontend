@@ -1,3 +1,4 @@
+import './Tickets.css';
 import React from 'react';
 import axios from 'axios';
 import SubmitIssue from './SubmitIssue';
@@ -28,11 +29,11 @@ class Tickets extends React.Component {
         return tickets.map((ticket, index) => {
             const { id, name, issue, description } = ticket;
             return (
-                <tr key={id}>
-                    <td>{id}</td>
-                    <td>{name}</td>
-                    <td>{issue}</td>
-                    <td>{description}</td>
+                <tr className={'table-row'} key={id}>
+                    <td className={'td-id'}>{id}</td>
+                    <td className={'td-name'}>{name}</td>
+                    <td className={'td-issue'}>{issue}</td>
+                    <td className={'td-issue'}>{description}</td>
                     <td><Delete ticketId={id} updateState={() => this.updateAfterDeletion(this.state.currentPage)} /></td>
                 </tr>
             )
@@ -72,17 +73,36 @@ class Tickets extends React.Component {
             </div>
         }
         return (
-            <div className="Tickets">
-                <table>
-                    <tbody>
+            <div >
+                <table className={"ticket-table"}>
+                    <thead className='table-header'>
+                        <tr>
+                            <th scope="col" className={'th-id'}>id</th>
+                            <th scope="col" className={'th-username'}>username</th>
+                            <th scope="col" className={'th-issue'}>issue</th>
+                            <th scope="col" className={'th-description'}>description</th>
+                            <th scope="col" className={'th-delete'}></th>
+                        </tr>
+                    </thead>
+                    <tbody className='table-body'>
                         {this.tableContent()}
                     </tbody>
                 </table>
                 <ReactPaginate
+                    activeClassName={'item active '}
+                    breakClassName={'item break-me '}
+                    containerClassName={'pagination'}
+                    disabledClassName={'disabled-page'}
+                    nextClassName={"item next "}
+                    pageClassName={'item pagination-page '}
+                    previousClassName={"item previous"}
+                    previousLabel={'<'}
+                    nextLabel={'>'}
                     pageCount={this.state.ticketsPageInfo.totalPages}
                     forcePage={this.state.currentPage}
                     pageRangeDisplayed={3}
                     onPageChange={(page) => this.getTickets(page.selected)}
+
                 />
                 <SubmitIssue updateTable={() => this.getTickets(this.state.currentPage)} />
 
