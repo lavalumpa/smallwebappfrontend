@@ -31,10 +31,10 @@
   
   .pagination {
     align-items: center;
-    background-color: darkred;
+    background-color:rgb(82, 78, 78);
     display: flex;
     flex-direction: row;
-    height: 60px;
+    height: 40px;
     justify-content: center;
     list-style-type: none;
     position: relative;
@@ -56,12 +56,16 @@
   }
 
   .ticket-table{
-      margin:auto;
-      width: 1120px;    
+      margin: auto;
+      width: 1120px;   
+      table-layout: fixed;
   }
-  .table-header ,.ticket-table , .table-row, .td-id, .td-name,.td-issue,.td-description, .td-delete{
+  td,table{
     border: 1px solid black;
     border-collapse: collapse;
+  }
+  td{
+    overflow:hidden;
   }
 
   .table-header{
@@ -82,14 +86,23 @@
 
   .td-description, .th-description{
       width:65%;
+
   }
 
   .td-delete, .th-delete{
       width:5%;
   }
+  img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px;
+    width: 250px;
+  }
 
 tr:nth-child(even) {background: #CCC}
 tr:nth-child(odd) {background: #FFF}
+
 
  
 

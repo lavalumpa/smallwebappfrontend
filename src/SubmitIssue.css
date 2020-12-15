@@ -1,7 +1,7 @@
 form{
     left: 50%;
     margin-left: -5%;
-    position: absolute;
+    position:fixed;
 }
 input {    
     display: block;
@@ -10,13 +10,17 @@ input {
 label{
     vertical-align: middle;
 }
+
 .desc-lab{
     margin-top: 5px;
 }
 
 textarea{
     vertical-align: top;
-    height:50px ;
+    height:75px ;
     width: 69%;
     resize: none;
 }
+
+
+

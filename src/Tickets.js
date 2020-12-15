@@ -1,12 +1,12 @@
-import './Tickets.css';
+import './tickets.css';
 import React from 'react';
 import axios from 'axios';
-import SubmitIssue from './SubmitIssue';
-import Delete from './Delete';
+import SubmitIssue from './submitissue.js';
+import Delete from './delete';
 import ReactPaginate from 'react-paginate';
 
 
-
+const imageURL = 'https://previews.123rf.com/images/larryrains/larryrains1605/larryrains160500844/57291799-complaint-box.jpg';
 
 class Tickets extends React.Component {
     constructor(props) {
@@ -16,12 +16,12 @@ class Tickets extends React.Component {
             currentPage: 0,
             isTicketLoaded: false
         }
-        this.getTasks = this.getTickets.bind(this);
+        this.getTasks = this.getTicketsPage.bind(this);
     }
 
 
     componentDidMount() {
-        this.getTickets(0);
+        this.getTicketsPage(0);
     }
 
     tableContent() {
@@ -44,9 +44,9 @@ class Tickets extends React.Component {
 
     updateAfterDeletion(currentPage) {
         if (this.isLastPageWithOneElement(currentPage)) {
-            this.getTickets(currentPage - 1);
+            this.getTicketsPage(currentPage - 1);
         } else {
-            this.getTickets(currentPage);
+            this.getTicketsPage(currentPage);
         }
     }
 
@@ -54,7 +54,7 @@ class Tickets extends React.Component {
         return this.state.ticketsPageInfo.totalElements % 10 === 1 && (currentPage + 1) === this.state.ticketsPageInfo.totalPages;
     }
 
-    getTickets(page) {
+    getTicketsPage(page) {
         axios.get(`http://localhost:8080/ticket?page=${page}`)
             .then(res => {
                 const tickets = res.data;
@@ -74,6 +74,10 @@ class Tickets extends React.Component {
         }
         return (
             <div >
+                <img
+                    src={imageURL}
+                    alt='Ticket'
+                ></img>
                 <table className={"ticket-table"}>
                     <thead className='table-header'>
                         <tr>
@@ -101,13 +105,12 @@ class Tickets extends React.Component {
                     pageCount={this.state.ticketsPageInfo.totalPages}
                     forcePage={this.state.currentPage}
                     pageRangeDisplayed={3}
-                    onPageChange={(page) => this.getTickets(page.selected)}
-
+                    onPageChange={(page) => this.getTicketsPage(page.selected)}
                 />
-                <SubmitIssue updateTable={() => this.getTickets(this.state.currentPage)} />
-
+                <SubmitIssue updateTable={() => this.getTicketsPage(this.state.currentPage)} />
             </div>
         );
     }
 }
+
 export default Tickets;
